@@ -3,7 +3,7 @@ package com.workintech.s18d4;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workintech.s18d4.controller.AccountController;
 import com.workintech.s18d4.controller.CustomerController;
-import com.workintech.s18d4.dto.CustomerResponse;
+import com.workintech.s18d4.exceptions.CustomerResponse;
 import com.workintech.s18d4.entity.Account;
 import com.workintech.s18d4.entity.Customer;
 import com.workintech.s18d4.service.AccountService;
@@ -111,7 +111,7 @@ class ControllerAndPropertiesTest {
     void testFindAllAccount() throws Exception {
         when(accountService.findAll()).thenReturn(List.of(sampleAccountForAccountControllerTest));
 
-        mockMvc.perform(get("/account"))
+        mockMvc.perform(get("1/account"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(1)))
